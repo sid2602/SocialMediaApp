@@ -5,8 +5,8 @@ const GlobalStyles = createGlobalStyle`
 ${normalize}
     body{
         
-        font-family: "Roboto", sans-serif;
         
+        font-family: 'Montserrat', sans-serif;
     }
 `
 
