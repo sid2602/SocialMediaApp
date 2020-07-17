@@ -10,7 +10,7 @@ const SignUp = () =>{
     return(
         <Container>
             <ImageSection img="signUp"/>
-            <InputSection>
+            <InputSection signUp>
                 <Formik
                     initialValues={{email:'',username: '',password: '',passwordConfirmation:''}}
                     validationSchema={SignUpSchema}

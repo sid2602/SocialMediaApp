@@ -59,16 +59,13 @@ export const InputSection = styled.section`
 
       @media(max-width: 600px){
 
+            margin: ${props=>props.signUp? "0 auto" : "10% auto"};
+
             padding: 10px 50px;
             min-width: 100%;
             
       }
-
-     
-
-     
-     
-      
+  
 `;
 
 export const InputText = styled.input`
@@ -79,13 +76,16 @@ export const InputText = styled.input`
       border-bottom: 1px solid ${props=>props.theme.colors.gray};
       padding: 15px;
       margin: 0 0 15px;
+
+      
+
       
       
 `;
 
 export const InputContainer = styled.div`
       margin:40px 0;
-
+      
       
 
       label{
@@ -98,6 +98,17 @@ export const InputContainer = styled.div`
             display: block;
             color:red;
             margin: 0 10px;
+      }
+
+
+      @media(max-width: 600px){
+
+            label{
+                  font-size: 1em;
+            }
+            
+            margin: 15px 0;
+            
       }
 
      
