@@ -43,7 +43,7 @@ export const InputSection = styled.section`
 
       h1{
             color: ${props => props.theme.colors.gray};
-            
+            font-size: 50px;
       }
 
 
@@ -64,6 +64,13 @@ export const InputSection = styled.section`
             padding: 10px 50px;
             min-width: 100%;
             
+      }
+
+      @media(max-width: 400px){
+
+            h1{
+                  font-size: 1.5em;
+            }
       }
   
 `;

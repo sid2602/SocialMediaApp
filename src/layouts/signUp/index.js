@@ -1,11 +1,19 @@
 import React from 'react';
 import {Formik,Form} from 'formik'
-import {Container,ImageSection,InputSection,ButtonsContainer} from '../style/style'
-import {CustomTextInput,SignUpSchema} from '../formComponents'
+import {Container,ImageSection,InputSection,ButtonsContainer} from '../../components/style/style'
+import {CustomTextInput,SignUpSchema} from '../../components/formComponents'
+
+
+import {Link} from 'react-router-dom'
+
+//redux
+
+import {connect} from 'react-redux'
+import registerUser from '../../data/operations/register.operation'
 
 //Form with formik
 
-const SignUp = () =>{
+const SignUp = ({registerUser}) =>{
 
     return(
         <Container>
@@ -15,14 +23,12 @@ const SignUp = () =>{
                     initialValues={{email:'',username: '',password: '',passwordConfirmation:''}}
                     validationSchema={SignUpSchema}
                     onSubmit={(values)=>{
-                        
-                       console.log(values)
-                        
+                       registerUser(values)
                     }}
                 >{props=>(
                     <Form>
 
-                        <h1 style={{fontSize:"50px"}}>Sign Up</h1>
+                        <h1 >Sign Up</h1>
 
                         <CustomTextInput name="username" placeholder="Enter username" type="text" label="Username"/>
                         <CustomTextInput name="email" placeholder="Enter email adress" type="text" label="Email"/>
@@ -31,7 +37,7 @@ const SignUp = () =>{
 
                         <ButtonsContainer>
                             <button type="submit">Sign Up</button>
-                            <a href="#dasdsa">Sign In <i className="fas fa-arrow-right"></i></a>
+                            <Link to="/">Sign In <i className="fas fa-arrow-right"></i></Link>
                         </ButtonsContainer>
                     </Form>
                 )}
@@ -42,6 +48,13 @@ const SignUp = () =>{
     )
 }
 
-export default SignUp;
+const mapDispatchToProps = dispatch => ({
+    registerUser: (User) => dispatch(registerUser(User))
+})
+
+
+const ConectedApp = connect(null,mapDispatchToProps)(SignUp);
+
+export default ConectedApp;
 
 

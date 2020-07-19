@@ -1,19 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {Router} from 'react-router-dom'
-import history from './history'
+
+//Styles
+
 import GlobalStyles from './globalStyles'
 import {ThemeProvider} from 'styled-components'
 import Theme from './theme'
 
+//routs
+
+import {Router} from 'react-router-dom'
+import history from './history'
+
+
 //redux
-import {createStore} from 'redux'
 import {Provider} from 'react-redux'
-import Store from './data/store'
+import configureStore from './data/store'
 
-
-const store = createStore(Store);
+const store = configureStore();
 
 ReactDOM.render(
   

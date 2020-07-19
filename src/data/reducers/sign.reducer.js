@@ -1,5 +1,5 @@
 
-import constans from '../constans/register.constans'
+import constans from '../constans/sign.constans'
 
 
 const initialState = {
@@ -10,26 +10,28 @@ const initialState = {
 
 const Register = (state = initialState,action) => {
     switch(action.type){
-        case constans.REGISTER_SUCCESS:
+        case constans.SIGN_SUCCESS:
             return{
                 error: '',
                 success: true,
                 loading: false
             }
 
-        case constans.REGISTER_LOADING:
+        case constans.SIGN_LOADING:
             return{
                 error: '',
                 loading: true,
                 success: ''
             }
         
-        case constans.REGISTER_FAILURE:
+        case constans.SIGN_FAILURE:
             return{
                 error: action.error,
                 loading: false,
                 success: false
             }
+        
+        
         default: return state
             
     }

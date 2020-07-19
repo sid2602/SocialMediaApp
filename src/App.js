@@ -1,17 +1,23 @@
 import React from 'react';
 
 
-import SignIn from './components/signIn';
-import SignUp from './components/signUp'
+
+import {Switch,Route} from 'react-router-dom'
+
+//layouts
+
+import SignIn from './layouts/signIn';
+import SignUp from './layouts/signUp'
 
 function App() {
 
 
 
   return (
-    <>
-        <SignUp/>
-    </>
+    <Switch>
+        <Route path="/" exact component={SignIn}/>
+        <Route path="/signUp" exact component={SignUp}/>
+    </Switch>
   )
 
 }
