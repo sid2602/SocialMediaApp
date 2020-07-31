@@ -1,8 +1,8 @@
 import React from 'react';
 import {Formik,Form} from 'formik'
-import {Container,ImageSection,InputSection,ButtonsContainer} from '../../components/style/style'
+import {Container,ImageSection,InputSection,ButtonsContainer,ErrorMessage} from '../../components/style/style'
 import {CustomTextInput,SignUpSchema} from '../../components/formComponents'
-
+// import Loader from '../../components/loader'
 
 import {Link} from 'react-router-dom'
 
@@ -13,7 +13,7 @@ import registerUser from '../../data/operations/register.operation'
 
 //Form with formik
 
-const SignUp = ({registerUser}) =>{
+const SignUp = ({success,error,loading,registerUser}) =>{
 
     return(
         <Container>
@@ -34,10 +34,11 @@ const SignUp = ({registerUser}) =>{
                         <CustomTextInput name="email" placeholder="Enter email adress" type="text" label="Email"/>
                         <CustomTextInput name="password" placeholder="Enter password" type="password" label="Password"/>
                         <CustomTextInput name="passwordConfirmation" placeholder="Repeat password" type="password" label="Repeat Password"/>
-
+                        {!success? <ErrorMessage>{error}</ErrorMessage> : null}
+                        {/* {loading? <Loader/> : null} */}
                         <ButtonsContainer>
                             <button type="submit">Sign Up</button>
-                            <Link to="/">Sign In <i className="fas fa-arrow-right"></i></Link>
+                            <Link to="/SignIn">Sign In <i className="fas fa-arrow-right"></i></Link>
                         </ButtonsContainer>
                     </Form>
                 )}
@@ -48,12 +49,18 @@ const SignUp = ({registerUser}) =>{
     )
 }
 
+const mapStateToProps = state =>({
+    success: state.signReducer.success,
+    error: state.signReducer.error,
+    loading: state.signReducer.loading
+})
+
 const mapDispatchToProps = dispatch => ({
     registerUser: (User) => dispatch(registerUser(User))
 })
 
 
-const ConectedApp = connect(null,mapDispatchToProps)(SignUp);
+const ConectedApp = connect(mapStateToProps,mapDispatchToProps)(SignUp);
 
 export default ConectedApp;
 

@@ -5,7 +5,8 @@ import constans from '../constans/sign.constans'
 const initialState = {
     error: '',
     success: '',
-    loading: false
+    loading: false,
+    
 }
 
 const Register = (state = initialState,action) => {
@@ -14,21 +15,24 @@ const Register = (state = initialState,action) => {
             return{
                 error: '',
                 success: true,
-                loading: false
+                loading: false,
+               
             }
 
         case constans.SIGN_LOADING:
             return{
                 error: '',
                 loading: true,
-                success: ''
+                success: '',
+                
             }
         
         case constans.SIGN_FAILURE:
             return{
                 error: action.error,
                 loading: false,
-                success: false
+                success: false,
+                
             }
         
         

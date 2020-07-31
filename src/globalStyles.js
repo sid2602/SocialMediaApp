@@ -5,7 +5,7 @@ const GlobalStyles = createGlobalStyle`
 ${normalize}
     body{
         
-        
+        height: 100vh;
         font-family: 'Montserrat', sans-serif;
     }
 `

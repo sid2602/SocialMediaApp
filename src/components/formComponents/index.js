@@ -1,6 +1,6 @@
 import React from 'react';
 import {useField} from 'formik'
-import {InputContainer,InputText} from '../style/style.js'
+import {InputContainer,InputText,ErrorMessage} from '../style/style.js'
 import * as Yup from 'yup';
 
 
@@ -13,7 +13,7 @@ export const CustomTextInput = ({label,...props}) => {
     <InputContainer>
         <label htmlFor={props.name}>{label} </label>
         <InputText {...props} {...field}/>
-        {meta.touched && meta.error ?( <p>{meta.error}</p> ): null}
+        {meta.touched && meta.error ?( <ErrorMessage>{meta.error}</ErrorMessage> ): null}
     </InputContainer>
    )
 }
@@ -37,7 +37,7 @@ export const SignUpSchema = Yup.object().shape({
     .min(8, 'Password is too short - should be 8 chars minimum.')
     .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        'Invalid password'
+        'Password must consist of lowercase, uppercase letters, characters and numbers'
         
       ),
 

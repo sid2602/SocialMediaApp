@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.main`
     display: flex;
-    height: 100vh;
-    overflow-y:hidden;
+    height: 100%;
 `
 
 export const ImageSection = styled.section`
@@ -66,7 +65,7 @@ export const InputSection = styled.section`
             
       }
 
-      @media(max-width: 400px){
+      @media(max-width: 350px){
 
             h1{
                   font-size: 1.5em;
@@ -101,13 +100,6 @@ export const InputContainer = styled.div`
             color: ${props => props.theme.colors.gray}
       }
 
-      p{
-            display: block;
-            color:red;
-            margin: 0 10px;
-      }
-
-
       @media(max-width: 600px){
 
             label{
@@ -119,6 +111,17 @@ export const InputContainer = styled.div`
       }
 
      
+`;
+
+export const ErrorMessage = styled.p`
+      display: block;
+      color:red;
+      
+      @media(max-width: 350px){
+
+            font-size:0.7em;
+      }
+      
 `;
 
 export const ButtonsContainer = styled.div`

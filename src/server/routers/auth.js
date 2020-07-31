@@ -2,9 +2,36 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 // Schema
 
 const User = require('../modeles/User');
+
+
+
+
+
+
+
+
+
+
+router.get('/',(req,res)=>{
+   
+    const token = req.cookies.accessToken;
+
+    try{
+        const decoded = jwt.verify(token,process.env.ACCESS_SECRET_TOKEN);
+
+    }catch(err){
+        res.send({
+            error: "Invalid token",
+            success: false
+        })
+    }
+    
+
+})
 
 
 //Register
@@ -49,7 +76,7 @@ router.post('/register',async(req,res)=>{
     }catch(err){
         //Send some error
 
-        res.send({
+        return res.send({
             error: err.toString(),
             success: false
         })
@@ -79,17 +106,46 @@ router.post('/login', async (req,res)=>{
             error: 'Invalid Password',
             success: false
         })
-
-
-    return res.send({
-        error: '',
-        success: true
+    
+    const accessToken = await jwt.sign({_id:user._id},process.env.ACCESS_SECRET_TOKEN)
+    
+    res.cookie('accessToken',accessToken,{
+        maxAge: 3600 *24 *24,
+        httpOnly: true,
+        // secure: true
     })
     
-    
+    return res.send({
+            error: '',
+            success: true,      
+    })
+       
+        
+   
+   })
+   
+
+router.get('/logOut',(req,res)=>{
+
+    const token = req.cookies.accessToken
+
+    if(!token){
+
+        return res.send({
+            error: 'You are not log in',
+            success: 'false',
+        })
+
+    }
+
+    res.clearCookie('accessToken')
+
+    return res.send({
+        error:"",
+        success: true
+    })
+
 })
-
-
 
 
 

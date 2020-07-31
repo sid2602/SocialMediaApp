@@ -1,8 +1,9 @@
-import React from 'react';
+import React ,{useEffect}from 'react';
 import {Formik,Form} from 'formik'
-import {Container,ImageSection,InputSection,ButtonsContainer} from '../../components/style/style'
+import {Container,ImageSection,InputSection,ButtonsContainer,ErrorMessage} from '../../components/style/style'
 import {CustomTextInput,SignInSchema} from '../../components/formComponents'
-
+// import Loader from '../../components/loader'
+import history from '../../history'
 import {Link} from 'react-router-dom'
 
 import {connect} from 'react-redux'
@@ -10,8 +11,13 @@ import loginUser from '../../data/operations/login.operation'
 
 //Form with formik
 
+const SignIn = ({success,error,loading,loginUser}) =>{
 
-const SignIn = ({loginUser}) =>{
+    useEffect(()=>{
+
+        if(success) history.push('/')
+
+    },[success])
 
     return(
         <Container>
@@ -30,10 +36,11 @@ const SignIn = ({loginUser}) =>{
 
                         <CustomTextInput name="email" placeholder="Enter email adress" type="text" label="Email"/>
                         <CustomTextInput name="password" placeholder="Enter password" type="password" label="Password"/>
-                            
+                        {!success? <ErrorMessage>{error}</ErrorMessage> : null}
+                        {/* {loading? <Loader/> : null} */}
                         <ButtonsContainer>
                             <button type="submit">Sign In</button>
-                            <Link to="/signUp">Sign Up <i className="fas fa-arrow-right"></i></Link>
+                            <Link to="/SignUp">Sign Up <i className="fas fa-arrow-right"></i></Link>
                         </ButtonsContainer>
                     </Form>
                 )}
@@ -43,11 +50,17 @@ const SignIn = ({loginUser}) =>{
     )
 }
 
+const mapStateToProps = state =>({
+    success: state.signReducer.success,
+    error: state.signReducer.error,
+    loading: state.signReducer.loading
+})
+
 const mapDispatchToProps = dispatch =>({
     loginUser: (User) => dispatch(loginUser(User))
 })
 
-const ConnectedApp = connect(null,mapDispatchToProps)(SignIn);
+const ConnectedApp = connect(mapStateToProps,mapDispatchToProps)(SignIn);
 
 export default ConnectedApp;
 
