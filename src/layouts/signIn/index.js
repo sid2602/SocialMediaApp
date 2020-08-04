@@ -2,7 +2,7 @@ import React ,{useEffect}from 'react';
 import {Formik,Form} from 'formik'
 import {Container,ImageSection,InputSection,ButtonsContainer,ErrorMessage} from '../../components/style/style'
 import {CustomTextInput,SignInSchema} from '../../components/formComponents'
-// import Loader from '../../components/loader'
+import Loader from '../../components/loader'
 import history from '../../history'
 import {Link} from 'react-router-dom'
 
@@ -11,13 +11,14 @@ import loginUser from '../../data/operations/login.operation'
 
 //Form with formik
 
-const SignIn = ({success,error,loading,loginUser}) =>{
+const SignIn = ({success,error,loading,loginUser,logOutSuccess}) =>{
 
     useEffect(()=>{
 
-        if(success) history.push('/')
+        if(success && logOutSuccess) history.push('/')
 
     },[success])
+    
 
     return(
         <Container>
@@ -37,7 +38,7 @@ const SignIn = ({success,error,loading,loginUser}) =>{
                         <CustomTextInput name="email" placeholder="Enter email adress" type="text" label="Email"/>
                         <CustomTextInput name="password" placeholder="Enter password" type="password" label="Password"/>
                         {!success? <ErrorMessage>{error}</ErrorMessage> : null}
-                        {/* {loading? <Loader/> : null} */}
+                        {loading? <Loader/> : null}
                         <ButtonsContainer>
                             <button type="submit">Sign In</button>
                             <Link to="/SignUp">Sign Up <i className="fas fa-arrow-right"></i></Link>
@@ -53,7 +54,8 @@ const SignIn = ({success,error,loading,loginUser}) =>{
 const mapStateToProps = state =>({
     success: state.signReducer.success,
     error: state.signReducer.error,
-    loading: state.signReducer.loading
+    loading: state.signReducer.loading,
+    logOutSuccess: state.logOutReducer.success
 })
 
 const mapDispatchToProps = dispatch =>({

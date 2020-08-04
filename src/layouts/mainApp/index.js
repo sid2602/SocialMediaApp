@@ -1,6 +1,8 @@
 import React , {useEffect} from 'react';
-import {Redirect} from 'react-router-dom'
+
 import history from '../../history'
+
+import Navigation from './components/navigation'
 
 const MainApp = () => {
 
@@ -11,30 +13,13 @@ const MainApp = () => {
 
         sessionVerify().then(json =>{
           if(!json.success){
-            history.push('/signIn')
+            history.push('/SignIn')
           }
         })
     
       },[])
 
 
-
-
-    const logOut = () =>{
-        
-        const options = {credentials: 'include'};
-        fetch('http://localhost:4000/api/logOut',options)
-        .then(response => response.json())
-        .then(json => {
-            if(json.success){
-               window.location.reload();
-            }
-        }
-           
-        ) 
-
-
-    }
     
       const sessionVerify = async() => {
     
@@ -47,14 +32,15 @@ const MainApp = () => {
       }
 
 
-
-
     return(
         <>
+            <Navigation/>
             <p>HELLo</p>
-            <button onClick ={logOut}>LogOut</button>
+            
         </>
     )
 }
+
+
 
 export default MainApp;

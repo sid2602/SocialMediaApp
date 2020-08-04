@@ -2,7 +2,7 @@ import React from 'react';
 import {Formik,Form} from 'formik'
 import {Container,ImageSection,InputSection,ButtonsContainer,ErrorMessage} from '../../components/style/style'
 import {CustomTextInput,SignUpSchema} from '../../components/formComponents'
-// import Loader from '../../components/loader'
+import Loader from '../../components/loader'
 
 import {Link} from 'react-router-dom'
 
@@ -35,7 +35,7 @@ const SignUp = ({success,error,loading,registerUser}) =>{
                         <CustomTextInput name="password" placeholder="Enter password" type="password" label="Password"/>
                         <CustomTextInput name="passwordConfirmation" placeholder="Repeat password" type="password" label="Repeat Password"/>
                         {!success? <ErrorMessage>{error}</ErrorMessage> : null}
-                        {/* {loading? <Loader/> : null} */}
+                        {loading? <Loader/> : null}
                         <ButtonsContainer>
                             <button type="submit">Sign Up</button>
                             <Link to="/SignIn">Sign In <i className="fas fa-arrow-right"></i></Link>
