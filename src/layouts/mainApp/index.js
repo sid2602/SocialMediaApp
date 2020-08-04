@@ -3,6 +3,9 @@ import React , {useEffect} from 'react';
 import history from '../../history'
 
 import Navigation from './components/navigation'
+import Profile from './components/profile'
+
+import {Container} from './style'
 
 const MainApp = () => {
 
@@ -35,7 +38,10 @@ const MainApp = () => {
     return(
         <>
             <Navigation/>
-            <p>HELLo</p>
+            <Container>
+              <Profile/>
+            </Container>
+            
             
         </>
     )

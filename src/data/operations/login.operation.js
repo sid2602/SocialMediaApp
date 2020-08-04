@@ -1,4 +1,4 @@
-import action from '../actions/sign.action'
+import action from '../actions/login.action'
 
 
 const loginFetch = async(User) => {

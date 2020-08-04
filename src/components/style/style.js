@@ -8,12 +8,13 @@ export const Container = styled.main`
 export const ImageSection = styled.section`
     width: 60%;
     height: 100vh;
-   
+    
     background-image: url(/img/${props=>props.img}.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    position:relative;
+    position:sticky;
+    top:0;
 
     &:after {
         position: absolute;

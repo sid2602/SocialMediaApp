@@ -52,9 +52,9 @@ const SignIn = ({success,error,loading,loginUser,logOutSuccess}) =>{
 }
 
 const mapStateToProps = state =>({
-    success: state.signReducer.success,
-    error: state.signReducer.error,
-    loading: state.signReducer.loading,
+    success: state.loginReducer.success,
+    error: state.loginReducer.error,
+    loading: state.loginReducer.loading,
     logOutSuccess: state.logOutReducer.success
 })
 

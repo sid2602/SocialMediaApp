@@ -32,6 +32,14 @@ export const SignUpSchema = Yup.object().shape({
     .min(6, 'Username has to be longer than 6 characters!')
     .required('Username is required!'),
 
+    brithday: 
+    Yup.date()
+    .required('Brithday is required!'),
+
+    city:
+    Yup.string()
+    .required('Username is required!'),
+    
     password: Yup.string()
     .required('Password is required! ') 
     .min(8, 'Password is too short - should be 8 chars minimum.')

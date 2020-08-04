@@ -1,0 +1,12 @@
+
+
+const LOGIN_LOADING = 'LOGIN_LOADING';
+const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+const LOGIN_FAILURE = 'LOGIN_FAILURE';
+
+export default{
+    LOGIN_LOADING,
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE,
+    
+}

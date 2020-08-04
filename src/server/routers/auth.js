@@ -39,7 +39,7 @@ router.get('/',(req,res)=>{
 router.post('/register',async(req,res)=>{
     
 
-    const {email,username,password} = req.body;
+    const {email,username,brithday,city,password} = req.body;
 
     //Check if email exist
 
@@ -61,6 +61,8 @@ router.post('/register',async(req,res)=>{
         const user = new User({
             email,
             username,
+            brithday,
+            city,
             password: hashedPassword
         })
 
