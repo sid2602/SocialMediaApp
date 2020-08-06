@@ -4,8 +4,10 @@ import history from '../../history'
 
 import Navigation from './components/navigation'
 import Profile from './components/profile'
+import AddPost from './components/addPost'
+import Post from './components/post'
 
-import {Container} from './style'
+import {Container,PostsWrapper} from './style'
 
 const MainApp = () => {
 
@@ -40,6 +42,16 @@ const MainApp = () => {
             <Navigation/>
             <Container>
               <Profile/>
+              <PostsWrapper>
+                <AddPost/>
+                <Post/>
+                <Post/>
+                <Post/>
+                <Post/>
+                <Post/>
+                
+              </PostsWrapper>
+              
             </Container>
             
             

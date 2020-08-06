@@ -126,6 +126,10 @@ router.post('/login', async (req,res)=>{
    
    })
    
+router.post('/changeUserData', async(req,res)=>{
+
+})
+
 
 router.get('/logOut',(req,res)=>{
 

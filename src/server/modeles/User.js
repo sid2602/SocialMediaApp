@@ -7,6 +7,10 @@ const User = new Schema({
     username:String,
     brithday:Date,
     city:String,
+    image:{
+        type: String,
+        default: 'uploads/zdj.jpg'
+    },
     email: String,
     password: String,
 })

@@ -77,18 +77,14 @@ export const InputSection = styled.section`
 
 export const InputText = styled.input`
       width: 100%;
-      box-sizing: border-box;
       outline: 0;
       border: 0;
       border-bottom: 1px solid ${props=>props.theme.colors.gray};
       padding: 15px;
       margin: 0 0 15px;
-
-      
-
-      
-      
 `;
+
+
 
 export const InputContainer = styled.div`
       margin:40px 0;
