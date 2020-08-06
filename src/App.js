@@ -1,9 +1,9 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 
 
 
 import {Switch,Route} from 'react-router-dom'
-
+import history from './history'
 
 
 //layouts
@@ -16,7 +16,13 @@ import MainApp from './layouts/mainApp'
 
 function App() {
 
+  useEffect(()=>{
+      const options = {credentials: 'include'}
+      fetch('http://localhost:4000/api/logged',options)
+      .then(res=>res.json())
+      .then(json=>json.success? history.push('/'):null)
 
+  },[])
  
 
 

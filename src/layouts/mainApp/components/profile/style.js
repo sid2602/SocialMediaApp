@@ -9,11 +9,13 @@ export const ProfileSection = styled.section`
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
+
+    form{}
 `;
 
 export const ProfilePhoto = styled.div`
     width: 150px;
-    margin: 2em 0 1em;
+    margin: 2em auto 1em auto;
     border: 1px solid #e9e9e9;
 
     img{
@@ -34,6 +36,12 @@ export const FullName = styled.header`
     h2{
         color: ${props => props.theme.colors.blue}
     }
+
+    i{
+        color: ${props => props.theme.colors.blue};
+        margin-right: 0.5em;
+    }
+    
 `;
 
 export const UserData = styled.div`
@@ -73,4 +81,5 @@ export const Input = styled.input`
     border-bottom: 1px solid ${props=>props.theme.colors.gray};
     color: gray;
     width: 200px;
+    
 `;

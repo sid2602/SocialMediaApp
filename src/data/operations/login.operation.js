@@ -1,6 +1,5 @@
 import action from '../actions/login.action'
 
-
 const loginFetch = async(User) => {
     const response = await fetch('http://localhost:4000/api/login', {
         method: 'POST',
@@ -18,12 +17,19 @@ const loginFetch = async(User) => {
 const loginUser = User => async(dispatch) =>{
 
     dispatch(action.loading());
+    
     try{
         const login = await loginFetch(User);
-        if(login.success)
+        if(login.success){
+            // console.log(login.userData)
             dispatch(action.success());
-        else
+            
+        }
+            
+        else{
             dispatch(action.failure(login.error));
+        }
+            
 
     }catch(err){
         console.error(err.toString());

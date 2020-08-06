@@ -33,7 +33,7 @@ export const SignUpSchema = Yup.object().shape({
     .required('Username is required!'),
 
     brithday: 
-    Yup.date()
+    Yup.string()
     .required('Brithday is required!'),
 
     city:

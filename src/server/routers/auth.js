@@ -3,25 +3,35 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
+const upload = multer({dest:'uploads/'});
+
+const authenticateToken = require('../verify')
+
 // Schema
 
 const User = require('../modeles/User');
 
-
-
-
-
-
-
-
-
-
-router.get('/',(req,res)=>{
+router.get('/', authenticateToken ,async (req,res)=>{
    
     const token = req.cookies.accessToken;
 
     try{
-        const decoded = jwt.verify(token,process.env.ACCESS_SECRET_TOKEN);
+        const _id = res.locals._id;
+        const user = await User.findOne({_id});
+        const data = {
+            username: user.username,
+            email:user.email,
+            image: user.image,
+            city: user.city,
+            brithday: user.brithday
+        }
+
+        res.send({
+            error: '',
+            success: true,
+            data
+        })
 
     }catch(err){
         res.send({
@@ -33,6 +43,13 @@ router.get('/',(req,res)=>{
 
 })
 
+//User is logged ?
+
+router.get('/logged', authenticateToken,(req,res)=>{
+    res.send({
+        success:true,
+    })
+})
 
 //Register
 
@@ -117,19 +134,23 @@ router.post('/login', async (req,res)=>{
         // secure: true
     })
     
+    const userData = {
+        username: user.username,
+        email: user.email,
+        image: user.image
+    }
+
+    // console.log(user)
+
     return res.send({
             error: '',
-            success: true,      
+            success: true,
+            userData   
     })
        
         
    
-   })
-   
-router.post('/changeUserData', async(req,res)=>{
-
 })
-
 
 router.get('/logOut',(req,res)=>{
 

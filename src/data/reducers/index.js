@@ -2,12 +2,14 @@ import {combineReducers} from 'redux'
 import registerReducer from './register.reducer'
 import logOutReducer from './logOut.reducer'
 import loginReducer from './logIn.reducer'
+import userDataReducer from './userData.reducer'
 import constans from '../constans/logOut.constans'
 
 const appReducer = combineReducers({
     registerReducer,
     loginReducer,
-    logOutReducer
+    logOutReducer,
+    userDataReducer
 })
 
 const rootReducer = (state,action)=>{

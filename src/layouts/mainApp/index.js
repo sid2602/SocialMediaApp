@@ -9,32 +9,19 @@ import Post from './components/post'
 
 import {Container,PostsWrapper} from './style'
 
-const MainApp = () => {
+import {connect} from 'react-redux';
+import userData from '../../data/operations/userData.operation'
+
+const MainApp = ({userData}) => {
 
 
     
 
     useEffect(()=>{
 
-        sessionVerify().then(json =>{
-          if(!json.success){
-            history.push('/SignIn')
-          }
-        })
+        userData();
     
       },[])
-
-
-    
-      const sessionVerify = async() => {
-    
-        const options = {credentials: 'include'}
-    
-        const response = await fetch('http://localhost:4000/api/',options);
-        const json = await response.json();
-    
-        return json;
-      }
 
 
     return(
@@ -59,6 +46,11 @@ const MainApp = () => {
     )
 }
 
+const mapDispatchToProps = dispatch =>({
+  userData: ()=>dispatch(userData())
+})
 
 
-export default MainApp;
+const ConectedApp = connect(null,mapDispatchToProps)(MainApp);
+
+export default ConectedApp;
