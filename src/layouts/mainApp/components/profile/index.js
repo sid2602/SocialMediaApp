@@ -3,6 +3,9 @@ import React,{useState,useRef} from 'react';
 import {ProfileSection,ProfilePhoto,FullName,UserData,Input} from './style'
 
 import {connect} from 'react-redux';
+import userData from '../../../../data/operations/userData.operation'
+import Loader from '../../../../components/loader'
+
 
 const Data = ({onHandleClick,data}) => (
     <>
@@ -20,18 +23,22 @@ const Data = ({onHandleClick,data}) => (
 const ChangeUserData = ({onHandleClick,city,brithday,username}) =>(
         <>
             <FullName>
-                <i className="fas fa-signature"></i><Input type="text" placeholder="Edit Username" ref={username}/>
+                <i className="fas fa-signature"></i><Input type="text" placeholder="Edit Username" ref={username} name="username"/>
             </FullName>
             <UserData>
-                <div><i className="fas fa-map-marker-alt"></i> <Input type="text" name="City" placeholder="Edit City" ref={city}/></div>
-                <div><i className="fas fa-birthday-cake"></i> <Input type="date" name="Brithday" placeholder="Edit Your Brithday" ref={brithday}/></div>
+                <div><i className="fas fa-map-marker-alt"></i> <Input type="text" name="city" placeholder="Edit City" ref={city}/></div>
+                <div><i className="fas fa-birthday-cake"></i> <Input type="date" name="brithday" placeholder="Edit Your Brithday" ref={brithday}/></div>
                 <button onClick={onHandleClick}><i className="fas fa-backspace"></i>Cancel </button> <button type="submit"><i className="fas fa-save"></i>Save </button>
             </UserData>
         </>
 )
-const Profile = ({data}) =>{
+
+
+const Profile = ({data,loading,userData}) =>{
 
     const [editing,setEditing] = useState(false);
+    const [imageIsLoaded,setImageLoaded] = useState(false);
+
     const file = useRef(null);
     const username = useRef(null);
     const city = useRef(null);
@@ -42,22 +49,50 @@ const Profile = ({data}) =>{
 
     const onHandleSubmit = (e) =>{
         e.preventDefault();
-        console.log(file.current.value,city.current.value,brithday.current.value)
-        console.log("SUBMITING")
+        const formData = new FormData();
+
+        formData.append('profileImage',file.current.files[0])
+        formData.append('username',username.current.value);
+        formData.append('city',city.current.value);
+        formData.append('brithday',brithday.current.value);
+        
+        fetch('http://localhost:4000/api/updateProfile', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'enctype':"multipart/form-data"
+        },
+        body: formData
+      }).then(res=>res.json())
+      .then(json=> {
+          if(json.success){
+              userData();
+              setEditing(false);
+          }
+          else {
+              alert(json.error)
+          }
+      });
+
     }
 
 
     return(
         <ProfileSection>
             <form onSubmit={(e)=>onHandleSubmit(e)}>
-            <ProfilePhoto>
-                <img src="img/zdj.jpg" alt="Profile"/>
-                {!editing? null: <input ref ={file}type="file"/>}
-            </ProfilePhoto>
-            {
-                !editing?<Data onHandleClick={onHandleClick} data={data}/>:<ChangeUserData onHandleClick={onHandleClick} file={file} city={city} brithday={brithday} username={username} />
-            }
+            {loading? <Loader/>:<>
+                <ProfilePhoto>
+                     <img src={`uploads/${data.image}`} className ={imageIsLoaded? null: "loading"} onLoad={()=>setImageLoaded(true)}alt="Profile" /> 
+                     {!imageIsLoaded? <Loader/> : null}
+                    {!editing? null: <input ref ={file}type="file" name="profileImage"/>}
+                </ProfilePhoto>
+                {
+                    !editing?<Data onHandleClick={onHandleClick} data={data}/>:<ChangeUserData onHandleClick={onHandleClick} file={file} city={city} brithday={brithday} username={username} />
+                }
+            </>
+            } 
            </form>
+        
             
         </ProfileSection>
     )
@@ -65,10 +100,13 @@ const Profile = ({data}) =>{
 
 const mapStateToProps = state =>({
     data: state.userDataReducer.data,
-    loading: state.userDataReducer.loading, 
-    
+    loading: state.userDataReducer.loading,     
 })
 
-const ConectedApp = connect(mapStateToProps,null)(Profile);
+const mapDispatchToProps = dispatch => ({
+    userData: ()=>dispatch(userData())
+})
+
+const ConectedApp = connect(mapStateToProps,mapDispatchToProps)(Profile);
 
 export default ConectedApp;

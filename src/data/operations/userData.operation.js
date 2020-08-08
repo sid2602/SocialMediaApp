@@ -17,7 +17,6 @@ const userData = () => async(dispatch)=>{
 
     try{
         const response = await fetchUserData();
-        console.log(response)
         if(response.success){
             dispatch(action.success(response.data))
         }else{

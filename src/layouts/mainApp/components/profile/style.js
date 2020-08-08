@@ -2,24 +2,31 @@ import styled from 'styled-components'
 
 export const ProfileSection = styled.section`
     width: 300px;
-    height: 450px;
+    height: 470px;
     box-shadow: 0 3px 14px rgba(0,0,0,0.50);
     background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     border-radius: 10px;
 
-    form{}
+    
 `;
 
 export const ProfilePhoto = styled.div`
     width: 150px;
     margin: 2em auto 1em auto;
     border: 1px solid #e9e9e9;
-
+    max-height: 250px;
     img{
+        
         width: 100%;
+        
+    }
+
+    .loading{
+        display: none;
     }
 
     input{
@@ -34,7 +41,8 @@ export const FullName = styled.header`
 
     margin-bottom: 1em;
     h2{
-        color: ${props => props.theme.colors.blue}
+        color: ${props => props.theme.colors.blue};
+        text-align: center;
     }
 
     i{

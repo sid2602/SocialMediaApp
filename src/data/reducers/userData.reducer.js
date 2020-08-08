@@ -25,7 +25,7 @@ const UserData = (state = initialState,action) => {
                 error: '',
                 loading: true,
                 success: '',
-                ...state
+                data: state.data
             }
         
         case constans.GET_USER_DATA_FAILURE:

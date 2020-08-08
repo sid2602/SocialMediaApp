@@ -13,6 +13,8 @@ const auth = require('./routers/auth');
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use('/uploads',express.static('public'));
+app.use('/uploads',express.static('file'));
 app.use('/api',auth);
 
 

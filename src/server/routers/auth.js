@@ -4,9 +4,36 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
-const upload = multer({dest:'uploads/'});
+
 
 const authenticateToken = require('../verify')
+
+
+
+
+const storage = multer.diskStorage({
+    destination: function(req,file,cb){
+        cb(null,`../../public/uploads/`)
+    },
+    filename: function(req,file,cb){
+        cb(null,new Date().getTime()+file.originalname)
+    }
+})
+
+const fileFilter = (req,file,cb) =>{
+    if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+        cb(null,true);
+    }else{
+        cb(null,false)
+    }
+}
+
+const upload = multer({
+    storage:storage,
+    limits:{ fileSize:1024*1024*5 },
+    fileFilter: fileFilter
+})
+
 
 // Schema
 
@@ -49,6 +76,56 @@ router.get('/logged', authenticateToken,(req,res)=>{
     res.send({
         success:true,
     })
+})
+
+//Update Profile
+
+router.post('/updateProfile',authenticateToken, upload.single('profileImage'),async(req,res)=>{
+
+    // console.log(req.file)
+
+    const {username,city,brithday} = req.body;
+    const _id = res.locals._id;
+    let errors = '';
+    // console.log(req.file)
+
+    try{
+
+        if(req.file)
+            await User.updateOne({_id},{$set: {image: req.file.filename}})
+
+        if(username.length >= 6)
+            await User.updateOne({_id},{$set: {username}})
+        else if(username.length >= 1)
+            errors+='Username has to be longer than 6 characters!'
+
+
+        if(city.length >= 3)
+           await User.updateOne({_id},{$set: {city}})
+        else if(city.length >= 1)
+            errors+='\n City has to be longer than 6 characters!'
+
+        if(brithday.length>=10)
+            await User.updateOne({_id},{$set: {brithday}})
+        else if(brithday>=1)
+            errors+='\n fill property brithday form!'
+
+
+        if(errors) return res.send({
+                error: errors,
+                success: false
+            })
+        
+
+        return res.send({
+            error:"",
+            success: true
+        })
+
+    }catch(error){
+        console.error(error)
+    }
+    
 })
 
 //Register
