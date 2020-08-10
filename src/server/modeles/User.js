@@ -1,5 +1,4 @@
 const mongoose  = require('mongoose');
-const { string } = require('yup');
 const Schema = mongoose.Schema;
 
 const User = new Schema({
@@ -9,7 +8,7 @@ const User = new Schema({
     city:String,
     image:{
         type: String,
-        default: 'uploads/zdj.jpg'
+        default: 'zdj.jpg'
     },
     email: String,
     password: String,

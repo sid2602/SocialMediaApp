@@ -3,13 +3,15 @@ import registerReducer from './register.reducer'
 import logOutReducer from './logOut.reducer'
 import loginReducer from './logIn.reducer'
 import userDataReducer from './userData.reducer'
+import addNewPost from './addNewPost.reducer'
 import constans from '../constans/logOut.constans'
 
 const appReducer = combineReducers({
     registerReducer,
     loginReducer,
     logOutReducer,
-    userDataReducer
+    userDataReducer,
+    addNewPost
 })
 
 const rootReducer = (state,action)=>{

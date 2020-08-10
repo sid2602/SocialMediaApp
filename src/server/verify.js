@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-module.exports = authenticateToken = (req,res,next) => {
+const authenticateToken = (req,res,next) => {
     const token = req.cookies.accessToken;
 
     if(token == null) return res.send({
@@ -21,3 +21,5 @@ module.exports = authenticateToken = (req,res,next) => {
     }
 
 }
+
+module.exports = authenticateToken

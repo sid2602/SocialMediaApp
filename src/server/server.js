@@ -7,15 +7,16 @@ const cookieParser = require('cookie-parser')
 require('dotenv/config')
 
 const auth = require('./routers/auth');
-
-
+const profile = require('./routers/profile')
+const posts = require('./routers/posts')
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use('/uploads',express.static('public'));
 app.use('/uploads',express.static('file'));
-app.use('/api',auth);
+app.use('/api',auth,profile,posts);
+
 
 
 mongoose.connect(process.env.DB_CONNECTION,{ useNewUrlParser: true, useUnifiedTopology: true  },()=>{

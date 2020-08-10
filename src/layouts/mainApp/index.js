@@ -46,6 +46,10 @@ const MainApp = ({userData}) => {
     )
 }
 
+const mapStateToProps = state => ({
+  
+})
+
 const mapDispatchToProps = dispatch =>({
   userData: ()=>dispatch(userData())
 })
