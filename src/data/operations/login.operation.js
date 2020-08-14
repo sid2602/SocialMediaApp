@@ -21,7 +21,7 @@ const loginUser = User => async(dispatch) =>{
     try{
         const login = await loginFetch(User);
         if(login.success){
-            // console.log(login.userData)
+           
             dispatch(action.success());
             
         }

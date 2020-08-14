@@ -1,8 +1,6 @@
 import action from '../actions/register.action'
 
  const registerFetch = async User => {
-    
-    console.log(User.brithday)
 
     const response = await fetch('http://localhost:4000/api/register', {
         method: 'POST',

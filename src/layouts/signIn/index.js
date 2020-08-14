@@ -17,7 +17,7 @@ const SignIn = ({success,error,loading,loginUser,logOutSuccess}) =>{
 
         if(success && logOutSuccess) history.push('/')
 
-    },[success])
+    },[success,logOutSuccess])
     
 
     return(

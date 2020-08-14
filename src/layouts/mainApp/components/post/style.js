@@ -7,6 +7,7 @@ export const Wrapper = styled.article`
     box-shadow: 0 3px 14px rgba(0,0,0,0.50);
     display: flex;
     margin-bottom: 2em;
+    position: relative;
     
 `;
 
@@ -14,6 +15,8 @@ export const PostContent = styled.div`
     flex: 2;
     border: 1px solid #e9e9e9;
     padding: 1em;
+    
+
     h2{
         color: ${props => props.theme.colors.blue};
         margin-top: 0;
@@ -21,11 +24,12 @@ export const PostContent = styled.div`
 
     p{
         display: block;
-        max-height: 75px;
+        height: 70px;
         overflow: hidden;
     }
 
     @media(max-width: 700px){
+
         p{
             font-size: 0.9em;
         }
@@ -46,10 +50,14 @@ export const PostContent = styled.div`
 
 export const ImageDiv = styled.div`
     flex: 1;
+    display:flex;
+    align-items: center;
+    // justify-content: center;
+    overflow-y: hidden;
 
     img{
         width: 100%;
-        height: 100%;
+        // height: 100%;
     }
 
     @media(max-width: 700px){
@@ -61,12 +69,13 @@ export const ImageDiv = styled.div`
         align-self: center;
         min-width: 75px;
         height: 100px;
-        
+        margin-right: 1em;
     }
 `;
 
 export const Actions = styled.div`
     display flex;
+    
     padding: 1em;
     
 
@@ -91,6 +100,24 @@ export const Actions = styled.div`
             font-size: 0.8em;
         }
     }
-
-
 `;
+
+// export const DeleteButton = styled.button`
+//     display: block;
+//     position: absolute;
+//     right: -1em;
+//     top: -1em;
+//     cursor: pointer;
+//     background-color: transparent;
+//     border: none;
+//     outline: none;
+//     i{
+//         transform: rotate(45deg);
+//         font-size: 2em;
+//         color: brown;
+//     }
+
+//     :hover i{
+//         color: crimson;
+//     }
+// `

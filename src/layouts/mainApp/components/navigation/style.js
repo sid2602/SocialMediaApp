@@ -4,8 +4,11 @@ export const Header = styled.header`
     height: 50px;
     background-color: ${props => props.theme.colors.lightBlue};
     margin-bottom: 4em;
-
+    // position: fixed;
+    width: 100%;
+    // z-index: 1200;
     nav{
+        
         height: 100%;
     }
 
