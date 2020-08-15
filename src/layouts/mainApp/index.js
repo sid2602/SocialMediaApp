@@ -14,15 +14,14 @@ import {connect} from 'react-redux';
 import userData from '../../data/operations/userData.operation'
 import getPosts  from '../../data/operations/getPosts.operation'
 import postsActions from '../../data/actions/getPosts.action'
+
 // to DO
 
 // Add likes
 // Add coments
 // add remove posts
 // add Pop up posts
-// scroll to home
-// fixed navigation
-// Profile submit change
+// image load 
 
 
 const MainApp = ({userData,getPosts,posts,postsLoading,getPostsSuccess,addNewPostSuccess,resetPosts}) => {
@@ -38,7 +37,7 @@ const MainApp = ({userData,getPosts,posts,postsLoading,getPostsSuccess,addNewPos
     const postsLimit = 5;
 
     //infinity scroll
-    const observer = useRef()
+    const observer = useRef();
     const lastPost = useCallback(node => {
       if(postsLoading) return;
       if(observer.current) observer.current.disconnect();
@@ -86,12 +85,12 @@ const MainApp = ({userData,getPosts,posts,postsLoading,getPostsSuccess,addNewPos
 
     return(
         <>
-            <Navigation setOpenAddPostModal={setOpenAddPostModal}/>
+            <Navigation setOpenAddPostModal={setOpenAddPostModal} />
             <Container>
               <Profile/>
               <PostsWrapper>
                 
-                <AddPost setOpenAddPostModal={setOpenAddPostModal} openAddPostModal={openAddPostModal}/>
+                <AddPost setOpenAddPostModal={setOpenAddPostModal} openAddPostModal={openAddPostModal} />
 
                 {posts && displayPosts}
                 {postsLoading && <Loader/>}
@@ -119,7 +118,6 @@ const mapDispatchToProps = dispatch =>({
   userData: ()=>dispatch(userData()),
   getPosts: (start,limit)=>dispatch(getPosts(start,limit)),
   resetPosts: ()=>dispatch(postsActions.reset())
-  // getNewPost: ()=>dispatch(getNewPost())
 })
 
 

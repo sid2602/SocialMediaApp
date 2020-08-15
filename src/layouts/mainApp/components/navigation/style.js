@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 export const Header = styled.header`
     height: 50px;
-    background-color: ${props => props.theme.colors.lightBlue};
-    margin-bottom: 4em;
-    // position: fixed;
+    background-color: ${({theme:{colors}}) =>colors.lightBlue};
+    position: fixed;
     width: 100%;
-    // z-index: 1200;
+    top: 0;
+    z-index: 1200;
+   
     nav{
-        
         height: 100%;
     }
 
@@ -22,15 +22,22 @@ export const Header = styled.header`
     }
 
     li{
-        font-size: 1.4em;
         list-style-type: none;
-        margin: 10px;
-        color: white;
-        cursor: pointer;
-        padding: 5px;
+        margin: 0.5em; 
     }
 
-    li:hover{
-        color: #dadadb
+    button{
+        font-size: 1.4em;
+        background-color: transparent;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 0.5em;
+        transition: 0.2s;
+        outline: none;
+    }
+
+    button:hover{
+        color: #dadadb;
     }
 `;

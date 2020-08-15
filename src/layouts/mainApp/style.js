@@ -3,8 +3,10 @@ import styled from 'styled-components'
 export const Container = styled.main`
     width: 1000px;
     min-height: 90vh;
-    padding: 1em;
+    padding: 6em 1em 1em;
+    
     margin: 0 auto;
+
     display: flex;
     justify-content: space-between;
 

@@ -63,7 +63,8 @@ const Profile = ({data,loading,userData}) =>{
           'enctype':"multipart/form-data"
         },
         body: formData
-      }).then(res=>res.json())
+      })
+      .then(res=>res.json())
       .then(json=> {
           if(json.success){
               userData();

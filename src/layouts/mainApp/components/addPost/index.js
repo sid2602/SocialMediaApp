@@ -35,7 +35,7 @@ const AddPost = ({addPost,loadingPost,success,error,setOpenAddPostModal,openAddP
     }
 
     return ( 
-        <Wrapper>
+        <Wrapper className="addPost">
             <Overlay modal={openAddPostModal? true: false} onClick={()=>setOpenAddPostModal(false)}/>
             <CreatePost modal={openAddPostModal? true: false}>
                 <label htmlFor="newPost">Create new post</label>

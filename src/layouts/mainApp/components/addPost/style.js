@@ -4,6 +4,7 @@ export const Wrapper = styled.article`
     display:flex;
     flex-direction:column;
     margin-bottom: 3em;
+    
     width: 100%;
 
     @media(max-width: 700px){
