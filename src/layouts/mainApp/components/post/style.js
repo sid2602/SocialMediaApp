@@ -8,6 +8,7 @@ export const Wrapper = styled.article`
     display: flex;
     margin-bottom: 2em;
     position: relative;
+    cursor: pointer;
     
 `;
 
@@ -81,7 +82,7 @@ export const Actions = styled.div`
 
     button{
         border: none;
-        color: ${props => props.theme.colors.blue};
+        color: ${({theme:{colors},active})=>active? colors.lightBlue:colors.blue };
         outline: none;
         cursor: pointer;
         background-color: white;
@@ -102,22 +103,3 @@ export const Actions = styled.div`
     }
 `;
 
-// export const DeleteButton = styled.button`
-//     display: block;
-//     position: absolute;
-//     right: -1em;
-//     top: -1em;
-//     cursor: pointer;
-//     background-color: transparent;
-//     border: none;
-//     outline: none;
-//     i{
-//         transform: rotate(45deg);
-//         font-size: 2em;
-//         color: brown;
-//     }
-
-//     :hover i{
-//         color: crimson;
-//     }
-// `

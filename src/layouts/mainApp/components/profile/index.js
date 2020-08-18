@@ -47,7 +47,7 @@ const Profile = ({data,loading,userData}) =>{
     const onHandleClick =()=> setEditing(!editing);
 
 
-    const onHandleSubmit = (e) =>{
+    const onHandleSubmit = async (e) =>{
         e.preventDefault();
         const formData = new FormData();
 
@@ -56,25 +56,22 @@ const Profile = ({data,loading,userData}) =>{
         formData.append('city',city.current.value);
         formData.append('brithday',brithday.current.value);
         
-        fetch('http://localhost:4000/api/updateProfile', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'enctype':"multipart/form-data"
-        },
-        body: formData
-      })
-      .then(res=>res.json())
-      .then(json=> {
-          if(json.success){
-              userData();
-              setEditing(false);
-          }
-          else {
-              alert(json.error)
-          }
-      });
+        const options = {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+            'enctype':"multipart/form-data"
+            },
+            body: formData
+        }
 
+        const response = await fetch('http://localhost:4000/api/updateProfile',options)
+        const json = await response.json();
+        
+        if(json.success)
+            window.location.reload();
+        else alert(json.error)
+     
     }
 
 

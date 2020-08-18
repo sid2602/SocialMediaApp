@@ -13,23 +13,16 @@ import {Container,PostsWrapper} from './style'
 import {connect} from 'react-redux';
 import userData from '../../data/operations/userData.operation'
 import getPosts  from '../../data/operations/getPosts.operation'
-import postsActions from '../../data/actions/getPosts.action'
 
 // to DO
 
-// Add likes
 // Add coments
-// add remove posts
-// add Pop up posts
-// image load 
 
+const MainApp = ({getUserData,getPosts,posts,postsLoading,getPostsSuccess,addNewPostSuccess,userData}) => {
 
-const MainApp = ({userData,getPosts,posts,postsLoading,getPostsSuccess,addNewPostSuccess,resetPosts}) => {
-
-
-
-    //Open modal
+    //Open addPost modal
     const [openAddPostModal, setOpenAddPostModal] = useState(false)
+
     const [numberOfPost,setNumberOfPost] = useState(1);
 
     //limit of posts
@@ -58,28 +51,21 @@ const MainApp = ({userData,getPosts,posts,postsLoading,getPostsSuccess,addNewPos
 
     useEffect(()=>{
 
-        userData();
-
-        if(addNewPostSuccess === true){
-          resetPosts()
-        }
-
+        getUserData();
         getPosts(0,postsLimit);
         setNumberOfPost(5);
 
 
 
-      },[userData,getPosts,setNumberOfPost,addNewPostSuccess,resetPosts])
-    
+      },[getUserData,getPosts,setNumberOfPost,addNewPostSuccess])
       //display posts
 
     const displayPosts = posts.map((post,index) =>{
       
-
       if(index+1 === posts.length)
-        return <div key={post._id} ref={lastPost}><Post data={post} /> </div>
+        return <div key={post._id} ref={lastPost}><Post data={post} setOpenPostModal={setOpenAddPostModal} userData={userData}/> </div>
       else 
-        return <Post data={post} key={post._id}/>
+        return <Post data={post} key={post._id} setOpenPostModal={setOpenAddPostModal} userData={userData}/>
 
   })
 
@@ -111,13 +97,13 @@ const mapStateToProps = state => ({
   getPostsSuccess: state.getPosts.success,
   getPostsError: state.getPosts.errorr,
   addNewPostSuccess: state.addNewPost.success,
-  posts: state.getPosts.posts
+  posts: state.getPosts.posts,
+  userData: state.userDataReducer.data
 })
 
 const mapDispatchToProps = dispatch =>({
-  userData: ()=>dispatch(userData()),
+  getUserData: ()=>dispatch(userData()),
   getPosts: (start,limit)=>dispatch(getPosts(start,limit)),
-  resetPosts: ()=>dispatch(postsActions.reset())
 })
 
 

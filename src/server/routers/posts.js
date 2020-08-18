@@ -66,9 +66,7 @@ router.get('/getPosts',authenticateToken,async(req,res) =>{
                 
 
                 
-                const posts = await Post.find({}).sort({_id: -1}).skip(startPost).populate('userData','username email image').limit(limitPost);
-               
-
+                const posts = await Post.find({}).sort({_id: -1}).skip(startPost).populate('userData','username email image city brithday').limit(limitPost);
 
                 return res.send({
                     posts,
@@ -94,6 +92,76 @@ router.get('/getPosts',authenticateToken,async(req,res) =>{
     
 })
 
+router.get('/likePost',authenticateToken, async(req,res)=>{
+    const {postId,email} = req.query;
+    console.log(email)
+    try{
 
+        const post = await Post.findById(postId)
+        const findUser = post.whoLikes.indexOf(email);
+        let like = false;
+
+
+        if(findUser < 0 ){
+            post.whoLikes.push(email);
+            post.likes ++;
+            like = true;
+
+        }else{
+            post.whoLikes.splice(findUser,1);
+            post.likes --;
+        }
+
+
+
+         await post.save();
+
+
+
+         if(like)
+             return res.json({
+                 success: true,
+                 error: '',
+             })
+         else
+             return res.json({
+                 success: false,
+                 error: ''
+             })
+         
+
+        // post.whoLikes.push(res.locals._id)
+        // console.log(post.likes)
+        // await post.save();
+
+
+    }catch(error){
+        console.error(error);
+    }
+})
+
+router.get('/removePost',authenticateToken,async(req,res)=>{
+    const {postId} = req.query;
+
+    try{
+        
+        const post = await Post.findById(postId);
+        if(post){
+            await post.remove();
+            return res.json({
+                success: true,
+                error: ''
+            })
+        }else return res.json({
+            success: false,
+            error: 'post not found'
+        })
+         
+
+    }catch(error){
+        console.error(error)
+    }
+
+})
 
 module.exports = router;

@@ -71,7 +71,6 @@ export const ShareButton = styled.button`
 `;
 
 export const Overlay = styled.div`
-    
     position: fixed;
     left: 0;
     top:0;

@@ -16,13 +16,13 @@ export const ProfileSection = styled.section`
 
 export const ProfilePhoto = styled.div`
     width: 150px;
-    margin: 2em auto 1em auto;
+    margin: ${props=>props.small? '1em auto' : '2em auto 1em auto'};
     border: 1px solid #e9e9e9;
-    max-height: 250px;
+    max-height: ${props => props.small? '200px': '250px'};
     img{
         
         width: 100%;
-        
+        height: 100%;
     }
 
     .loading{
@@ -63,6 +63,7 @@ export const UserData = styled.div`
     }
 
     div{
+        text-align: ${props => props.center && 'center'};
         margin-bottom: 1em;
     }
 

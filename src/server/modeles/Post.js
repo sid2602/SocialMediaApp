@@ -15,6 +15,7 @@ const Post = new Schema({
         type: Number,
         default: 0
     },
+    whoLikes:[String],
 })
 
 module.exports = mongoose.model('Post',Post)

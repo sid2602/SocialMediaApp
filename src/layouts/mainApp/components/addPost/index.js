@@ -29,7 +29,7 @@ const AddPost = ({addPost,loadingPost,success,error,setOpenAddPostModal,openAddP
         else{
             setOpenAddPostModal(false);
             postContent.current.value="";
-            
+            window.location.reload();
         }
 
     }
