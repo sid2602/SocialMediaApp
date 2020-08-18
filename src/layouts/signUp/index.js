@@ -1,8 +1,8 @@
 import React,{useEffect} from 'react';
 import {Formik,Form} from 'formik'
-import {Container,ImageSection,InputSection,ButtonsContainer,ErrorMessage} from '../../components/style/style'
-import {CustomTextInput,SignUpSchema} from '../../components/formComponents'
-import Loader from '../../components/loader'
+import {Container,ImageSection,InputSection,ButtonsContainer,ErrorMessage} from '../signComponents//style/style'
+import {CustomTextInput,SignUpSchema} from '../signComponents//formComponents'
+import Loader from '../signComponents//loader'
 
 import {Link} from 'react-router-dom'
 

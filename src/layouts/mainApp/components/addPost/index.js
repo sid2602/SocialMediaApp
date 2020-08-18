@@ -1,7 +1,7 @@
 import React,{useState,useRef} from 'react';
 
 import {CreatePost,ShareButton,Wrapper,Overlay} from './style'
-import Loader from '../../../../components/loader'
+import Loader from '../../../signComponents/loader'
 //Redux
 
 import addPost from '../../../../data/operations/addNewPost.operation'

@@ -4,7 +4,7 @@ import {ProfileSection,ProfilePhoto,FullName,UserData,Input} from './style'
 
 import {connect} from 'react-redux';
 import userData from '../../../../data/operations/userData.operation'
-import Loader from '../../../../components/loader'
+import Loader from '../../../signComponents/loader'
 
 
 const Data = ({onHandleClick,data}) => (

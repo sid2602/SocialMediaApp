@@ -4,7 +4,7 @@ import Navigation from './components/navigation'
 import Profile from './components/profile'
 import AddPost from './components/addPost'
 import Post from './components/post'
-import Loader from '../../components/loader'
+import Loader from '../signComponents/loader'
 
 //styles
 import {Container,PostsWrapper} from './style'
