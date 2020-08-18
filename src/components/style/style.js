@@ -24,7 +24,7 @@ export const ImageSection = styled.section`
         width: 100%;
         height: 100%;
         z-index: 0;
-        background-color: ${props => props.theme.colors.lightBlue};
+        background-color: ${({theme:{colors}})=>colors.lightBlue};
         opacity: 15%;
       }
 
@@ -42,7 +42,7 @@ export const InputSection = styled.section`
       
 
       h1{
-            color: ${props => props.theme.colors.gray};
+            color: ${({theme:{colors}})=>colors.gray};
             font-size: 50px;
       }
 
@@ -79,7 +79,7 @@ export const InputText = styled.input`
       width: 100%;
       outline: 0;
       border: 0;
-      border-bottom: 1px solid ${props=>props.theme.colors.gray};
+      border-bottom: 1px solid ${({theme:{colors}})=>colors.gray};
       padding: 15px;
       margin: 0 0 15px;
 `;
@@ -94,7 +94,7 @@ export const InputContainer = styled.div`
       label{
             font-weight: bold;
             font-size: 1.5em;
-            color: ${props => props.theme.colors.gray}
+            color: ${({theme:{colors}})=>colors.gray}
       }
 
       @media(max-width: 600px){
@@ -129,13 +129,13 @@ export const ButtonsContainer = styled.div`
       button{
             padding: 15px 50px;
             border-radius: 15px;
-            background-color: ${props=>props.theme.colors.lightBlue};
-            border: 0.5px solid ${props=>props.theme.colors.gray};
+            background-color: ${({theme:{colors}})=>colors.lightBlue};
+            border: 0.5px solid ${({theme:{colors}})=>colors.gray};
             color: white;
             transition: 0.2s;
             cursor: pointer;
             &:hover{
-                  background-color: ${props=>props.theme.colors.blue};
+                  background-color: ${({theme:{colors}})=>colors.blue};
             } 
       }
 
@@ -147,7 +147,7 @@ export const ButtonsContainer = styled.div`
             transition: 0.2s;
             
             &:hover{
-                  color: ${props=>props.theme.colors.gray};
+                  color: ${({theme:{colors}})=>colors.gray};
             } 
 
       }
@@ -171,7 +171,7 @@ export const ButtonsContainer = styled.div`
                   transition: 0.2s;
                   
                   &:hover{
-                        color: ${props=>props.theme.colors.gray};
+                        color: ${({theme:{colors}})=>colors.gray};
                   } 
       
             }

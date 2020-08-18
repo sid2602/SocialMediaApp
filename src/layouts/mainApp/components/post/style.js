@@ -19,7 +19,7 @@ export const PostContent = styled.div`
     
 
     h2{
-        color: ${props => props.theme.colors.blue};
+        color: ${({theme:{colors}})=>colors.blue};
         margin-top: 0;
     }
 
@@ -93,7 +93,7 @@ export const Actions = styled.div`
     }
 
     button:hover i{
-        color: ${props => props.theme.colors.lightBlue};
+        color: ${({theme:{colors}})=>colors.lightBlue};
     }
 
     @media(max-width: 700px){

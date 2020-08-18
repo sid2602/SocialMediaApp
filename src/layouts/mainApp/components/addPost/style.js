@@ -45,8 +45,8 @@ export const CreatePost = styled.div`
 
 export const ShareButton = styled.button`
     width:400px;
-    border:1px solid ${props => props.theme.colors.blue};
-    background-color: ${props => props.theme.colors.lightBlue};
+    border:1px solid ${({theme:{colors}})=>colors.blue};
+    background-color: ${({theme:{colors}})=>colors.lightBlue};
     color: white;
     display: block;
     transform: ${props => props.modal?'scaleY(1) translateY(0)':'scaleY(0) translateY(-60px)'};
@@ -62,7 +62,7 @@ export const ShareButton = styled.button`
     transition: 0.2s;
 
     :hover{
-        background-color: ${props => props.theme.colors.blue};
+        background-color: ${({theme:{colors}})=>colors.blue};
     }
 
     @media(max-width: 700px){

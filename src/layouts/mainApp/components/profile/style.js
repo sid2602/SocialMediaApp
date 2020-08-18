@@ -41,12 +41,12 @@ export const FullName = styled.header`
 
     margin-bottom: 1em;
     h2{
-        color: ${props => props.theme.colors.blue};
+        color: ${({theme:{colors}})=>colors.blue};
         text-align: center;
     }
 
     i{
-        color: ${props => props.theme.colors.blue};
+        color: ${({theme:{colors}})=>colors.blue};
         margin-right: 0.5em;
     }
     
@@ -57,7 +57,7 @@ export const UserData = styled.div`
     color: #707070;
     
     i{
-        color: ${props => props.theme.colors.blue};
+        color: ${({theme:{colors}})=>colors.blue};
         margin-right: 0.5em;
         transition: 0.2s;
     }
@@ -80,14 +80,14 @@ export const UserData = styled.div`
     }
 
     button:hover i{
-        color: ${props => props.theme.colors.lightBlue};
+        color: ${({theme:{colors}})=>colors.lightBlue};
     }
 `;
 
 export const Input = styled.input`
     outline: 0;
     border: 0;
-    border-bottom: 1px solid ${props=>props.theme.colors.gray};
+    border-bottom: 1px solid ${({theme:{colors}})=>colors.gray};
     color: gray;
     width: 200px;
     
