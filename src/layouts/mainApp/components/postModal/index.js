@@ -12,7 +12,7 @@ const PostModal = ({setOpenPostModal,data,userData}) => {
     const handleClickDeleteButton = async() => {
         const options = {credentials: 'include'}
 
-        const response = await fetch(`http://localhost:4000/api/removePost?postId=${data._id}`,options);
+        const response = await fetch(`/api/removePost?postId=${data._id}`,options);
         const json = await response.json();
 
         if(json.success){

@@ -1,7 +1,7 @@
 import action from '../actions/addNewPost.action'
 
 const addPostFetch = async(data) => {
-    const response = await fetch('http://localhost:4000/api/addPost', {
+    const response = await fetch('/api/addPost', {
         method: 'POST',
         credentials: 'include',
         headers: {

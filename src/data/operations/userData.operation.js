@@ -6,7 +6,7 @@ const fetchUserData = async() => {
     
     const options = {credentials: 'include'}
 
-    const response = await fetch('http://localhost:4000/api/',options);
+    const response = await fetch('/api/',options);
     const json = await response.json();
 
     return json;

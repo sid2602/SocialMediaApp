@@ -1,7 +1,7 @@
 {
   "name": "app",
   "version": "0.1.0",
-  "homepage": "http://localhost:3000/",
+  
   "private": true,
   "dependencies": {
     "@hapi/joi": "^17.1.1",
@@ -65,5 +65,7 @@
   },
   "devDependencies": {
     "webpack-node-externals": "^2.5.1"
-  }
+  },
+  "proxy": "http://localhost:4000"
+  
 }

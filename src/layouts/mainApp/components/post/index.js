@@ -50,7 +50,7 @@ const Post = ({data,userData}) => {
 
         const options = {credentials: 'include'}
 
-        const response = await fetch(`http://localhost:4000/api/likePost?postId=${data._id}&email=${userData.email}`,options);
+        const response = await fetch(`/api/likePost?postId=${data._id}&email=${userData.email}`,options);
         const json = await response.json();
         
         if(json.success){

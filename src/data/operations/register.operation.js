@@ -2,7 +2,7 @@ import action from '../actions/register.action'
 
  const registerFetch = async User => {
 
-    const response = await fetch('http://localhost:4000/api/register', {
+    const response = await fetch('/api/register', {
         method: 'POST',
        
         headers: {

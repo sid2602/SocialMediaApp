@@ -4,7 +4,7 @@ const getPostsFetch = async(start,limit) => {
     
     const options = {credentials: 'include'}
 
-    const response = await fetch(`http://localhost:4000/api/getPosts?start=${start}&limit=${limit}`,options);
+    const response = await fetch(`/api/getPosts?start=${start}&limit=${limit}`,options);
     const json = await response.json();
 
     return json;

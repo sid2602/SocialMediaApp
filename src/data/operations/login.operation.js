@@ -1,7 +1,7 @@
 import action from '../actions/login.action'
 
 const loginFetch = async(User) => {
-    const response = await fetch('http://localhost:4000/api/login', {
+    const response = await fetch('/api/login', {
         method: 'POST',
         credentials: 'include',
         headers: {

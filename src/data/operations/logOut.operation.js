@@ -3,7 +3,7 @@ import history from '../../history'
 
 const logOutFetch = async() =>{
     const options = {credentials: 'include'};
-    const response = await fetch('http://localhost:4000/api/logOut',options);
+    const response = await fetch('/api/logOut',options);
     const json = response.json();
     return json;
 }

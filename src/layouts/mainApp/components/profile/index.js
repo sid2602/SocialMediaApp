@@ -65,7 +65,7 @@ const Profile = ({data,loading,userData}) =>{
             body: formData
         }
 
-        const response = await fetch('http://localhost:4000/api/updateProfile',options)
+        const response = await fetch('/api/updateProfile',options)
         const json = await response.json();
         
         if(json.success)
