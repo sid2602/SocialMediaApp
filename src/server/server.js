@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser')
+const path = require('path');
 require('dotenv/config')
 
 const PORT = process.env.PORT || 4000;
@@ -25,10 +26,13 @@ mongoose.connect(process.env.MONGODB_URI || process.env.DB_CONNECTION,{ useNewUr
     console.log("conectet to db");
 })
 
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static('build/'))
-}
 
+app.use(express.static(path.join(__dirname,'../../build')))
+
+
+app.get('/', (req,res) => {
+    res.sendFile(path.join(__dirname, '../../build/index.html'));
+});
 
 app.listen(PORT,console.log(`Server is starting at ${PORT}`));
 

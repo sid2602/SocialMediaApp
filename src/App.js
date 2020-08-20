@@ -18,7 +18,7 @@ function App() {
 
   useEffect(()=>{
       const options = {credentials: 'include'}
-      fetch('http://localhost:4000/api/logged',options)
+      fetch('/api/logged',options)
       .then(res=>res.json())
       .then(json=>json.success? history.push('/'):null)
 

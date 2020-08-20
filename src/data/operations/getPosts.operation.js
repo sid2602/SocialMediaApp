@@ -26,7 +26,7 @@ const getPosts = (start,limit) => async(dispatch) =>{
             
 
     }catch(err){
-        console.error(err.toString());
+        console.log(err.toString());
     }
     
 }
