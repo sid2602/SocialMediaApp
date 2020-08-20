@@ -8,7 +8,7 @@ import action from '../actions/register.action'
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Origin':'http://localhost:4000'
+        //   'Origin':'http://localhost:4000'
         },
         body: JSON.stringify(User)
       });

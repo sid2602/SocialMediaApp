@@ -10,7 +10,6 @@ const Navigation = ({logOutUser,setOpenAddPostModal}) =>{
 
     const handleAddPostClick = () =>{
 
-        // console.log(document.querySelector(".addPost").offsetTop);
         window.scrollTo(0,document.querySelector(".addPost").offsetTop - 100);
         setOpenAddPostModal(true);
     }

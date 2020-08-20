@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser')
 require('dotenv/config')
 
+const PORT = process.env.PORT || 4000;
+
 const auth = require('./routers/auth');
 const profile = require('./routers/profile')
 const posts = require('./routers/posts')
@@ -19,10 +21,16 @@ app.use('/api',auth,profile,posts);
 
 
 
-mongoose.connect(process.env.DB_CONNECTION,{ useNewUrlParser: true, useUnifiedTopology: true  },()=>{
+mongoose.connect(process.env.MONGODB_URI || process.env.DB_CONNECTION,{ useNewUrlParser: true, useUnifiedTopology: true  },()=>{
     console.log("conectet to db");
 })
-app.listen(4000);
+
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('build/'))
+}
+
+
+app.listen(PORT);
 
 
 
