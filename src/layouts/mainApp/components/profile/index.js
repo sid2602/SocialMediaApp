@@ -80,7 +80,7 @@ const Profile = ({data,loading,userData}) =>{
             <form onSubmit={(e)=>onHandleSubmit(e)}>
             {loading? <Loader/>:<>
                 <ProfilePhoto>
-                     <img src={`uploads/${data.image}`} className ={imageIsLoaded? null: "loading"} onLoad={()=>setImageLoaded(true)}alt="Profile" /> 
+                     <img src={`/uploads/${data.image}`} className ={imageIsLoaded? null: "loading"} onLoad={()=>setImageLoaded(true)}alt="Profile" /> 
                      {!imageIsLoaded? <Loader/> : null}
                     {!editing? null: <input ref ={file}type="file" name="profileImage"/>}
                 </ProfilePhoto>
